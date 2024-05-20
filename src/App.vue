@@ -182,6 +182,7 @@ onMounted(() => {
     // Assign triangle a material
     rect.material = data.materials.standard;
 
+    let time = 0.0;
     // Animation function - called before each frame gets rendered
     data.scene.onBeforeRenderObservable.add(() => {
         if (data.filter !== rect.material.name) {
@@ -190,6 +191,12 @@ onMounted(() => {
 
         if (data.textures[data.selected_texture] !== null) {
             data.materials[data.filter].setTexture('image', data.textures[data.selected_texture]);
+        }
+
+        if (data.filter === 'ripple') {
+            let delta_time = (1.0 / 60.0) * data.scene.getAnimationRatio();
+            time += delta_time;
+            data.materials.ripple.setFloat('time', time);
         }
     });
 
