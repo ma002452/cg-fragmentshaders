@@ -35,7 +35,7 @@ void main() {
     vec4 originalColor = texture(image, model_uv);
     
     // make colors of areas beyond the threshold brighter
-    vec4 brightColor = max(originalColor - vec4(0.5), 0.0) * 3.0;
+    vec4 brightColor = max(originalColor - vec4(0.6), 0.0) * 2.0;
     
     // Gaussian blur
     vec4 blurredColor = blur(image, model_uv);
